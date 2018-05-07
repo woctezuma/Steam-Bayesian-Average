@@ -93,7 +93,11 @@ def load_steamspy_data():
 def main():
     steamdb_data = load_steamdb_data()
 
+    print('[SteamDB] number of games = ' + str(len(steamdb_data)))
+
     steamspy_data = load_steamspy_data()
+
+    print('[SteamSpy] number of games = ' + str(len(steamspy_data)))
 
     return
 
