@@ -1,7 +1,7 @@
 def load_steamdb_data(verbose=True):
     steamdb_filename = 'data/steamdb.txt'
 
-    with open(steamdb_filename, 'r', encoding="utf8") as f:
+    with open(steamdb_filename, 'r', encoding='utf8') as f:
         d = f.readlines()
 
     if verbose:
