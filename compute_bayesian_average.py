@@ -1,5 +1,34 @@
-def load_steamdb_data(verbose=True):
-    steamdb_filename = 'data/steamdb.txt'
+import json
+import pathlib
+import time
+from urllib.request import urlopen
+
+
+def get_data_path():
+    data_path = 'data/'
+
+    pathlib.Path(data_path).mkdir(parents=True, exist_ok=True)
+
+    return data_path
+
+
+def get_steamdb_filename():
+    data_filename = get_data_path() + 'steamdb.txt'
+
+    return data_filename
+
+
+def get_steamspy_filename():
+    # Get current date as yyyymmdd format
+    current_date = time.strftime('%Y%m%d')
+
+    data_filename = get_data_path() + current_date + '_steamspy.json'
+
+    return data_filename
+
+
+def load_steamdb_data(verbose=False):
+    steamdb_filename = get_steamdb_filename()
 
     with open(steamdb_filename, 'r', encoding='utf8') as f:
         d = f.readlines()
@@ -31,8 +60,40 @@ def load_steamdb_data(verbose=True):
     return data
 
 
+def load_steamspy_data():
+    steamspy_filename = get_steamspy_filename()
+
+    # Attempt to load cached data. If it fails, then download data from SteamSpy URL.
+    try:
+        with open(steamspy_filename, 'r', encoding='utf8') as f:
+            data = json.load(f)
+
+    except FileNotFoundError:
+        print('Downloading and caching data from SteamSpy.')
+
+        steamspy_url = 'http://steamspy.com/api.php?request=all'
+
+        with urlopen(steamspy_url) as response:
+            # Download JSON. Reference: https://stackoverflow.com/a/32169442
+            raw_data = response.read()
+            encoding = response.info().get_content_charset('utf8')
+
+        data = json.loads(raw_data.decode(encoding))
+
+        # Enforce double-quotes instead of single-quotes. Reference: https://stackoverflow.com/a/8710579/
+        data_str = json.dumps(data)
+
+        # Cache the json data to a local file
+        with open(steamspy_filename, 'w', encoding='utf8') as f:
+            print(data_str, file=f)
+
+    return data
+
+
 def main():
     steamdb_data = load_steamdb_data()
+
+    steamspy_data = load_steamspy_data()
 
     return
 
