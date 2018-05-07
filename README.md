@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ![SteamDB login](https://i.imgur.com/cPO5t8v.png)
 
-Once you are signed-in, make sure to view all games, then copy and paste the whole table in a text file.
+Once you are signed-in, make sure to view all games, then copy and paste the whole table in a text file called `data/steamdb.txt`.
 
 ![SteamDB start](https://i.imgur.com/PzwJXA3.png)
 
