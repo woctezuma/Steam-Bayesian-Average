@@ -27,8 +27,9 @@ pip install -r requirements.txt
 
 Once you are signed-in, make sure to view all games, then copy and paste the whole table in a text file.
 
-![SteamDB start](https://i.imgur.com/GXFobNv.png)
-![SteamDB end](https://i.imgur.com/BajK3gf.png)
+![SteamDB start](https://i.imgur.com/PzwJXA3.png)
+
+![SteamDB end](https://i.imgur.com/Mf8k1nY.png)
 
 
 - Call the Python script. SteamSpy data will be automatically downloaded through [an API](https://steamspy.com/api.php).
@@ -39,5 +40,5 @@ python compute_bayesian_average.py
 
 ## References
 
-- [Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
+[Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
 
