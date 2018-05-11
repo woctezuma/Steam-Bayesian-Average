@@ -24,6 +24,12 @@ class TestLoadDataMethods(unittest.TestCase):
         # Second run: load cached data
         self.assertGreater(len(load_data.load_steamspy_data()), 0)
 
+    def test_load_filtered_data(self):
+        self.assertGreater(len(load_data.load_filtered_data(verbose=True)), 0)
+
+    def test_compare_data(self):
+        self.assertTrue(load_data.compare_data(verbose=True))
+
     def test_main(self):
         self.assertTrue(load_data.main())
 
