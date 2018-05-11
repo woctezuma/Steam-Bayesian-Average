@@ -1,11 +1,12 @@
-from load_data import load_steamdb_data, load_steamspy_data
+from load_data import load_filtered_data
+
 
 def main():
-    steamdb_data = load_steamdb_data()
+    filtered_data = load_filtered_data()
 
-    steamspy_data = load_steamspy_data()
+    print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
 
-    return
+    return True
 
 
 if __name__ == '__main__':
