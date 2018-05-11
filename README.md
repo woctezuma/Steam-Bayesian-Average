@@ -32,7 +32,7 @@ python compute_bayesian_average.py
 
 ## Data
 
-The current algorithm relies solely on SteamSpy's data. In case SteamSpy API stops providing the numbers of positive and
+The current algorithm relies solely on SteamSpy data. In case SteamSpy API stops providing the numbers of positive and
 negative reviews, data from SteamDB could be merged with SteamSpy data.
 
 - To download data from [SteamDB](https://steamdb.info/stats/gameratings/?all), first sign-in with your Steam account.
