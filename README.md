@@ -24,7 +24,18 @@ pip install -r requirements.txt
 
 ## Usage
 
-- Download data from [SteamDB](https://steamdb.info/stats/gameratings/?all). You will need to be signed in with a Steam account.
+- Call the Python script. SteamSpy data will be automatically downloaded through [an API](https://steamspy.com/api.php).
+
+```
+python compute_bayesian_average.py
+```
+
+## Data
+
+The current algorithm relies solely on SteamSpy's data. In case SteamSpy API stops providing the numbers of positive and
+negative reviews, data from SteamDB could be merged with SteamSpy data.
+
+- To download data from [SteamDB](https://steamdb.info/stats/gameratings/?all), first sign-in with your Steam account.
 
 ![SteamDB login](https://i.imgur.com/cPO5t8v.png)
 
@@ -33,13 +44,6 @@ Once you are signed-in, make sure to view all games, then copy and paste the who
 ![SteamDB start](https://i.imgur.com/PzwJXA3.png)
 
 ![SteamDB end](https://i.imgur.com/Mf8k1nY.png)
-
-
-- Call the Python script. SteamSpy data will be automatically downloaded through [an API](https://steamspy.com/api.php).
-
-```
-python compute_bayesian_average.py
-```
 
 ## References
 
