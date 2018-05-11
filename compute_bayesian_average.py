@@ -74,6 +74,7 @@ def simplify_string(text):
     # Strings with unnecessary information
     text = text.replace('&amp;', '')
     text = text.replace('& amp;', '')
+    text = text.replace('&', '')
     text = text.replace(' amp;', '')
     text = text.replace('(Mac, Linux)', '')
     text = text.replace('(Mac  Linux)', '')
@@ -81,7 +82,6 @@ def simplify_string(text):
     text = text.replace('(Mac / Linux)', '')
     text = text.replace('(Mac and Linux)', '')
     text = text.replace('(Mac/Linux)', '')
-    text = text.replace('(Mac, Linux,  Windows Update)', '')
     text = text.replace('(Mac, Linux,  Windows Update)', '')
     text = text.replace('(original release)', '')
     text = text.replace('(creator)', '')
