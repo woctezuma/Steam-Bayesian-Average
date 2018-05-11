@@ -16,10 +16,16 @@ class TestLoadDataMethods(unittest.TestCase):
         self.assertEqual(load_data.get_steamspy_filename(), 'data/' + time.strftime('%Y%m%d') + '_steamspy.json')
 
     def test_load_steamdb_data(self):
-        self.assertGreater(len(load_data.load_steamdb_data()), 0)
+        self.assertGreater(len(load_data.load_steamdb_data(verbose=True)), 0)
 
     def test_load_steamspy_data(self):
+        # First run: download data from Internet
         self.assertGreater(len(load_data.load_steamspy_data()), 0)
+        # Second run: load cached data
+        self.assertGreater(len(load_data.load_steamspy_data()), 0)
+
+    def test_main(self):
+        self.assertTrue(load_data.main())
 
 
 if __name__ == '__main__':

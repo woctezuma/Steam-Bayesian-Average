@@ -99,7 +99,7 @@ def main():
 
     print('[SteamSpy] number of games = ' + str(len(steamspy_data)))
 
-    return
+    return True
 
 
 if __name__ == '__main__':
