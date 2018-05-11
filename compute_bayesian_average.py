@@ -45,7 +45,7 @@ def compute_bayesian_average_for_every_game(data):
     return data, prior
 
 
-def group_data_by_keyword(data, keyword='developer'):
+def group_data_by_keyword(data, keyword='developers'):
     grouped_data = dict()
 
     for app_id in data:
@@ -91,6 +91,20 @@ def simplify_string(text):
     return text
 
 
+def check_string(data, keyword='developers'):
+    separator = ', '
+
+    for app_id in data:
+        text = data[app_id][keyword]
+
+        text = simplify_string(text)
+
+        if separator in text:
+            print('appID={:7}'.format(app_id) + '\t' + text)
+
+    return
+
+
 def main():
     filtered_data = load_filtered_data()
 
@@ -100,15 +114,8 @@ def main():
 
     print(game_prior)
 
-    keyword = 'developers'
-
-    for app_id in enhanced_data:
-        l = enhanced_data[app_id][keyword]
-
-        l = simplify_string(l)
-
-        if ', ' in l:
-            print(l)
+    for keyword in ['developers', 'publishers']:
+        check_string(enhanced_data, keyword)  # TODO check in Notepad++
 
     grouped_data_by_developer = group_data_by_keyword(enhanced_data, 'developers')
 
