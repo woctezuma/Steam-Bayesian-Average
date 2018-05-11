@@ -1,6 +1,7 @@
 import time
 import unittest
 
+import compute_bayesian_average
 import load_data
 
 
@@ -32,6 +33,12 @@ class TestLoadDataMethods(unittest.TestCase):
 
     def test_main(self):
         self.assertTrue(load_data.main())
+
+
+class TestComputeBayesianAverageMethods(unittest.TestCase):
+
+    def test_main(self):
+        self.assertTrue(compute_bayesian_average.main())
 
 
 if __name__ == '__main__':
