@@ -2,8 +2,11 @@ language: python
 python:
  - "3.6"
 install:
+ - pip install codecov
  - pip install -r requirements.txt
 script:
+ - coverage run tests.py
 - python load_data.py
 - python compute_bayesian_average.py
-
+after_success:
+ - codecov

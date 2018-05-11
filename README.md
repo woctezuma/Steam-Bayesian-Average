@@ -1,4 +1,4 @@
-# Steam Bayesian Average [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp]
+# Steam Bayesian Average [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp] [![Code coverage][Codecov image]][Codecov]
 
   [Build]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average
   [Build image]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average.svg?branch=master
@@ -6,6 +6,9 @@
   [PyUp]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/
   [Dependency image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/shield.svg
   [Python3 image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/python-3-shield.svg
+
+  [Codecov]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average
+  [Codecov image]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average/branch/master/graph/badge.svg
 
 This repository contains Python code to compute the Bayesian average of Steam games, developers, and publishers.
 
