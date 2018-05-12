@@ -37,7 +37,7 @@ def compute_game_bayesian_average(game, prior):
     return bayesian_average
 
 
-def compute_bayesian_average_for_every_game(data):
+def compute_bayesian_average_for_every_element(data):
     prior = choose_prior_for_games(data)
 
     for app_id in data:
@@ -124,7 +124,7 @@ def print_prior(prior):
 
 def run_bayesian_average_workflow(data, keyword=None, verbose=False):
     # Bayesian Average for games
-    enhanced_game_data, game_prior = compute_bayesian_average_for_every_game(data)
+    enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data)
 
     if keyword is None:
         keyword = 'games'
@@ -137,7 +137,7 @@ def run_bayesian_average_workflow(data, keyword=None, verbose=False):
         grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
 
         # Bayesian Average for developers or publishers
-        enhanced_data, prior = compute_bayesian_average_for_every_game(grouped_data)
+        enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data)
 
     print('\nRanking of ' + keyword)
     print_prior(prior)
