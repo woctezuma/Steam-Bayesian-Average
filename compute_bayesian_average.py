@@ -16,7 +16,19 @@ def compute_game_num_votes(game):
     return num_votes
 
 
-def choose_prior_for_games(data, keyword=None):
+def compute_dev_raw_score(dev):
+    raw_score = np.mean(dev['scores'])
+
+    return raw_score
+
+
+def compute_dev_num_votes(dev):
+    num_votes = len(dev['scores'])
+
+    return num_votes
+
+
+def choose_prior(data, keyword=None):
     if keyword is None:
         list_raw_scores = [compute_game_raw_score(game) for game in data.values()]
         list_num_votes = [compute_game_num_votes(game) for game in data.values()]
@@ -31,7 +43,7 @@ def choose_prior_for_games(data, keyword=None):
     return prior
 
 
-def compute_game_bayesian_average(element, prior, keyword=None):
+def compute_bayesian_average_for_an_element(element, prior, keyword=None):
     if keyword is None:
         raw_score = compute_game_raw_score(element)
         num_votes = compute_game_num_votes(element)
@@ -46,10 +58,10 @@ def compute_game_bayesian_average(element, prior, keyword=None):
 
 
 def compute_bayesian_average_for_every_element(data, keyword=None):
-    prior = choose_prior_for_games(data, keyword)
+    prior = choose_prior(data, keyword)
 
     for app_id in data:
-        data[app_id]['bayesian_average'] = compute_game_bayesian_average(data[app_id], prior, keyword)
+        data[app_id]['bayesian_average'] = compute_bayesian_average_for_an_element(data[app_id], prior, keyword)
 
     return data, prior
 
@@ -102,17 +114,6 @@ def group_data_by_keyword(data, keyword='developers'):
 
     return grouped_data
 
-
-def compute_dev_raw_score(dev):
-    raw_score = np.mean(dev['scores'])
-
-    return raw_score
-
-
-def compute_dev_num_votes(dev):
-    num_votes = len(dev['scores'])
-
-    return num_votes
 
 def check_string(data, keyword='developers'):
     # Objective: check what remains after calls to simplify_string(), so that one could try to improve simplify_string()
