@@ -45,5 +45,16 @@ def simplify_string(text):
     return text
 
 
+def main():
+    # noinspection SpellCheckingInspection
+    input_text = 'Konami Digital Entertainment Co., Ltd'
+
+    simplified_text = simplify_string(input_text)
+
+    print(simplified_text)
+
+    return True
+
+
 if __name__ == '__main__':
-    simplify_string()
+    main()
