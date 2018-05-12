@@ -148,7 +148,7 @@ def print_ranking(data, ranking, num_elements=250, markdown_format=True):
 
         print('{:4}.\t'.format(1 + i) + element_description + ' ({:1.3f})'.format(data[element]['bayesian_average']))
 
-    return
+    return True
 
 
 def print_prior(prior):

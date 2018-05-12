@@ -44,6 +44,17 @@ class TestRemoveNoiseMethods(unittest.TestCase):
 
 class TestComputeBayesianAverageMethods(unittest.TestCase):
 
+    def test_print_ranking(self):
+        data = {
+            'The Behemoth': {'name': 'The Behemoth', 'bayesian_average': 0.905},
+            'Valve': {'name': 'Valve', 'bayesian_average': 0.904},
+            'Terry Cavanagh': {'name': 'Terry Cavanagh', 'bayesian_average': 0.888},
+            '@unepic_fran': {'name': '@unepic_fran', 'bayesian_average': 0.882},
+        }
+        ranking = compute_bayesian_average.get_ranking(data)
+        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, num_elements=3, markdown_format=False))
+        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, num_elements=3, markdown_format=True))
+
     def test_main(self):
         self.assertTrue(compute_bayesian_average.main(verbose=True))
 
