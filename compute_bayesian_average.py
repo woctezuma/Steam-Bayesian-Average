@@ -148,12 +148,13 @@ def print_prior(prior):
     return
 
 
-def run_bayesian_average_workflow(data, keyword=None, verbose=False, criterion='the most acclaimed'):
+def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliable', verbose=False):
     # Bayesian Average for games
     enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data, keyword=None)
 
     if keyword is None:
         keyword = 'games'
+        criterion = 'the most acclaimed'
         enhanced_data = enhanced_game_data
         prior = game_prior
     else:
@@ -189,7 +190,7 @@ def main(verbose=False):
 
     for criterion in ['the most acclaimed', 'the most reliable']:
         for keyword in ['developers', 'publishers']:
-            run_bayesian_average_workflow(enhanced_data, keyword, verbose, criterion)
+            run_bayesian_average_workflow(enhanced_data, keyword, criterion, verbose)
 
     return True
 
