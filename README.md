@@ -43,9 +43,9 @@ The higher the game scores, and the more released games, the more likely a devel
 ## Results
 
 Results are shown in the Wiki for:
- - [the most acclaimed games](wiki/Acclaimed-Games),
- - [the most acclaimed](wiki/Acclaimed-Developers) and [the most reliable](wiki/Reliable-Developers) developers,
- - [the most acclaimed](wiki/Acclaimed-Publishers) and [the most reliable](wiki/Reliable-Publishers) publishers.
+ - [the most acclaimed games](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Games),
+ - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Developers) and [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Developers) developers,
+ - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Publishers) and [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Publishers) publishers.
 
 ## References
 
