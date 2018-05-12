@@ -121,34 +121,43 @@ def print_prior(prior):
 
     return
 
-def main(verbose=False):
-    filtered_data = load_filtered_data()
 
-    print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
+def run_bayesian_average_workflow(data, keyword=None, verbose=False):
+    # Bayesian Average for games
+    enhanced_game_data, game_prior = compute_bayesian_average_for_every_game(data)
 
-    enhanced_data, game_prior = compute_bayesian_average_for_every_game(filtered_data)
+    if keyword is None:
+        keyword = 'games'
+        enhanced_data = enhanced_game_data
+        prior = game_prior
+    else:
+        if verbose:
+            check_string(enhanced_game_data, keyword)
 
-    print('\nRanking of games')
-    print_prior(game_prior)
+        grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
+
+        # Bayesian Average for developers or publishers
+        enhanced_data, prior = compute_bayesian_average_for_every_game(grouped_data)
+
+    print('\nRanking of ' + keyword)
+    print_prior(prior)
 
     ranking = get_ranking(enhanced_data)
 
     print_ranking(enhanced_data, ranking)
 
+    return enhanced_data, prior, ranking
+
+
+def main(verbose=False):
+    filtered_data = load_filtered_data()
+
+    print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
+
+    enhanced_data, game_prior, game_ranking = run_bayesian_average_workflow(filtered_data)
+
     for keyword in ['developers', 'publishers']:
-        if verbose:
-            check_string(enhanced_data, keyword)
-
-        grouped_data = group_data_by_keyword(enhanced_data, keyword)
-
-        enhanced_grouped_data, keyword_prior = compute_bayesian_average_for_every_game(grouped_data)
-
-        print('\nRanking of ' + keyword)
-        print_prior(keyword_prior)
-
-        ranking = get_ranking(enhanced_grouped_data)
-
-        print_ranking(enhanced_grouped_data, ranking)
+        run_bayesian_average_workflow(enhanced_data, keyword, verbose)
 
     return True
 
