@@ -1,7 +1,7 @@
 import numpy as np
 
 from load_data import load_filtered_data
-from remove_noise import simplify_string
+from remove_noise import simplify_comma_separated_string
 
 
 def compute_game_raw_score(game):
@@ -78,7 +78,7 @@ def match_data_by_keyword(data, keyword='developers'):
 
     for app_id in data:
 
-        text = simplify_string(data[app_id][keyword])
+        text = simplify_comma_separated_string(data[app_id][keyword])
 
         for keyword_value in set(value.strip() for value in text.split(get_separator())):
             try:
@@ -121,7 +121,7 @@ def check_string(data, keyword='developers'):
     for app_id in data:
         text = data[app_id][keyword]
 
-        text = simplify_string(text)
+        text = simplify_comma_separated_string(text)
 
         if get_separator() in text:
             print('appID={:7}'.format(app_id) + '\t' + text)
@@ -133,6 +133,12 @@ def get_ranking(data):
     ranking = sorted(data.keys(), key=lambda element: data[element]['bayesian_average'], reverse=True)
 
     return ranking
+
+
+def simplify_url_item(url_item):
+    simplified_url_item = url_item.replace(' ', '%20').replace(',', '%2C')
+
+    return simplified_url_item
 
 
 def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format=True):
@@ -150,10 +156,11 @@ def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format
 
         if markdown_format:
             if keyword == 'games':
+                # noinspection SpellCheckingInspection
                 app_id = data[element]['appid']
                 hyperlink = '[' + element_name + '](' + steam_store_url + str(app_id) + ')'
             else:
-                hyperlink = '[' + element_name + '](' + steam_search_url + element_name.replace(' ', '%20') + ')'
+                hyperlink = '[' + element_name + '](' + steam_search_url + simplify_url_item(element_name) + ')'
         else:
             hyperlink = element_name
 
