@@ -30,6 +30,16 @@ pip install -r requirements.txt
 python compute_bayesian_average.py
 ```
 
+## Vocabulary
+
+### Acclaimed
+
+The higher the ratio of positive reviews, and the more reviews, the more likely a game, a developer or a publisher is *acclaimed*.
+
+### Reliable
+
+The higher the game scores, and the more released games, the more likely a developer or a publisher is *reliable*.
+
 ## Results
 
 Results are shown as Github Gists for:
@@ -37,7 +47,11 @@ Results are shown as Github Gists for:
  - [the most acclaimed](https://gist.github.com/woctezuma/83267034f823e5a8debd48a2c2251cb5) and [the most reliable](https://gist.github.com/woctezuma/0c7c11b09281c6f30de152011d080b83) developers,
  - [the most acclaimed](https://gist.github.com/woctezuma/adfeb0d0b624ccd28ffbc9ea5c3440d1) and [the most reliable](https://gist.github.com/woctezuma/714cb341c60ea5e74174fc5af472f100) publishers.
 
-## Data
+## References
+
+[Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
+
+## Appendix: data
 
 The current algorithm relies solely on SteamSpy data. In case SteamSpy API stops providing the numbers of positive and
 negative reviews, data from SteamDB could be merged with SteamSpy data.
@@ -51,8 +65,3 @@ Once you are signed-in, make sure to view all games, then copy and paste the who
 ![SteamDB start](https://i.imgur.com/PzwJXA3.png)
 
 ![SteamDB end](https://i.imgur.com/Mf8k1nY.png)
-
-## References
-
-[Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
-
