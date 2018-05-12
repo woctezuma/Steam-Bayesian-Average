@@ -163,7 +163,8 @@ def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format
 
 
 def print_prior(prior):
-    print('Prior: score={:1.3f} ; size={:3.0f}'.format(prior['raw_score'], prior['num_votes']))
+    hyperlink_to_github = ' ; [reference](https://github.com/woctezuma/Steam-Bayesian-Average)'
+    print('Prior: score={:1.3f} ; size={:3.0f}'.format(prior['raw_score'], prior['num_votes']) + hyperlink_to_github)
 
     return
 
