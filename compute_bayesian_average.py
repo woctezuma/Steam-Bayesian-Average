@@ -78,6 +78,7 @@ def group_data_by_keyword(data, keyword='developers'):
 
     for keyword_value in matched_data:
         grouped_data[keyword_value] = dict()
+        grouped_data[keyword_value]['name'] = keyword_value
         grouped_data[keyword_value]['positive'] = 0
         grouped_data[keyword_value]['negative'] = 0
 
@@ -102,6 +103,24 @@ def check_string(data, keyword='developers'):
     return
 
 
+def get_ranking(data):
+    ranking = sorted(data.keys(), key=lambda element: data[element]['bayesian_average'], reverse=True)
+
+    return ranking
+
+
+def print_ranking(data, ranking, num_elements=10):
+    for (i, element) in enumerate(ranking[:num_elements]):
+        print('{:4}.\t'.format(1 + i) + data[element]['name'] + ' ({:1.3f})'.format(data[element]['bayesian_average']))
+
+    return
+
+
+def print_prior(prior):
+    print('Prior: score={:1.3f} ; size={:3.0f}'.format(prior['raw_score'], prior['num_votes']))
+
+    return
+
 def main(verbose=False):
     filtered_data = load_filtered_data()
 
@@ -109,8 +128,12 @@ def main(verbose=False):
 
     enhanced_data, game_prior = compute_bayesian_average_for_every_game(filtered_data)
 
-    print('games')
-    print(game_prior)
+    print('\nRanking of games')
+    print_prior(game_prior)
+
+    ranking = get_ranking(enhanced_data)
+
+    print_ranking(enhanced_data, ranking)
 
     for keyword in ['developers', 'publishers']:
         if verbose:
@@ -120,8 +143,12 @@ def main(verbose=False):
 
         enhanced_grouped_data, keyword_prior = compute_bayesian_average_for_every_game(grouped_data)
 
-        print(keyword)
-        print(keyword_prior)
+        print('\nRanking of ' + keyword)
+        print_prior(keyword_prior)
+
+        ranking = get_ranking(enhanced_grouped_data)
+
+        print_ranking(enhanced_grouped_data, ranking)
 
     return True
 
