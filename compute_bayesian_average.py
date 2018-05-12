@@ -1,6 +1,7 @@
 import numpy as np
 
 from load_data import load_filtered_data
+from remove_noise import simplify_string
 
 
 def compute_game_raw_score(game):
@@ -66,53 +67,6 @@ def group_data_by_keyword(data, keyword='developers'):
     return grouped_data
 
 
-def simplify_string(text):
-    # Strings with commas which are not used as separators
-    text = text.replace(', INC', ' INC')
-    text = text.replace(', Inc', ' Inc')
-    text = text.replace(', LLC', ' LLC')
-    text = text.replace(', Ltd', ' Ltd')
-    text = text.replace(', S.L.', ' S.L.')
-    text = text.replace(', a.s.', ' a.s.')
-    text = text.replace(', inc', ' inc')
-    text = text.replace(', s.r.o.', ' s.r.o.')
-    text = text.replace('CO.,', 'CO.')
-    text = text.replace('Co.,', 'Co.')
-    text = text.replace('Oh, ', 'Oh ')
-    text = text.replace('co.,', 'co.')
-
-    # Strings with unnecessary information, which would lead to the same dev appearing under different names
-    text = text.replace(' - ', ' ')
-    text = text.replace(' and ', ' ')
-    text = text.replace('&', '')
-    text = text.replace('/', ' ')
-    text = text.replace('amp;', '')
-
-    text = text.replace('(Mac', '')
-    text = text.replace('Linux)', '')
-    text = text.replace('Linux, ', ' ')
-    text = text.replace('Mac, ', ' ')
-    text = text.replace('PC Port', '')
-    text = text.replace('Windows Update', '')
-
-    text = text.replace('(Developments)', '')
-    text = text.replace('(Linux)', '')
-    text = text.replace('(Mac)', '')
-    text = text.replace('(Some Models)', '')
-    text = text.replace('(art)', '')
-    text = text.replace('(co-designer)', '')
-    text = text.replace('(creator)', '')
-    text = text.replace('(dev)', '')
-    text = text.replace('(original release)', '')
-
-    text = text.replace('(', '')
-    text = text.replace(')', '')
-    while '  ' in text:
-        text = text.replace('  ', ' ')
-
-    return text
-
-
 def check_string(data, keyword='developers'):
     # Objective: check what remains after calls to simplify_string(), so that one could try to improve simplify_string()
 
@@ -127,7 +81,7 @@ def check_string(data, keyword='developers'):
     return
 
 
-def main():
+def main(verbose=False):
     filtered_data = load_filtered_data()
 
     print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
@@ -137,11 +91,10 @@ def main():
     print(game_prior)
 
     for keyword in ['developers', 'publishers']:
-        check_string(enhanced_data, keyword)  # TODO check in Notepad++
+        if verbose:
+            check_string(enhanced_data, keyword)
 
-    grouped_data_by_developer = group_data_by_keyword(enhanced_data, 'developers')
-
-    grouped_data_by_publisher = group_data_by_keyword(enhanced_data, 'publishers')
+        grouped_data = group_data_by_keyword(enhanced_data, keyword)
 
     return True
 
