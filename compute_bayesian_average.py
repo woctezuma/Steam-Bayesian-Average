@@ -51,10 +51,10 @@ def get_separator():
     return separator
 
 
-def group_data_by_keyword(data, keyword='developers'):
+def match_data_by_keyword(data, keyword='developers'):
     # Objective: create a dictionary which maps developers (or publishers) to a list of appIDs
 
-    grouped_data = dict()
+    matched_data = dict()
 
     for app_id in data:
 
@@ -62,9 +62,28 @@ def group_data_by_keyword(data, keyword='developers'):
 
         for keyword_value in set(value.strip() for value in text.split(get_separator())):
             try:
-                grouped_data[keyword_value].append(app_id)
+                matched_data[keyword_value].append(app_id)
             except KeyError:
-                grouped_data[keyword_value] = [app_id]
+                matched_data[keyword_value] = [app_id]
+
+    return matched_data
+
+
+def group_data_by_keyword(data, keyword='developers'):
+    # Objective: aggregate game reviews for each developer (or publisher)
+
+    matched_data = match_data_by_keyword(data, keyword)
+
+    grouped_data = dict()
+
+    for keyword_value in matched_data:
+        grouped_data[keyword_value] = dict()
+        grouped_data[keyword_value]['positive'] = 0
+        grouped_data[keyword_value]['negative'] = 0
+
+        for app_id in matched_data[keyword_value]:
+            grouped_data[keyword_value]['positive'] += data[app_id]['positive']
+            grouped_data[keyword_value]['negative'] += data[app_id]['negative']
 
     return grouped_data
 
@@ -90,6 +109,7 @@ def main(verbose=False):
 
     enhanced_data, game_prior = compute_bayesian_average_for_every_game(filtered_data)
 
+    print('games')
     print(game_prior)
 
     for keyword in ['developers', 'publishers']:
@@ -97,6 +117,11 @@ def main(verbose=False):
             check_string(enhanced_data, keyword)
 
         grouped_data = group_data_by_keyword(enhanced_data, keyword)
+
+        enhanced_grouped_data, keyword_prior = compute_bayesian_average_for_every_game(grouped_data)
+
+        print(keyword)
+        print(keyword_prior)
 
     return True
 
