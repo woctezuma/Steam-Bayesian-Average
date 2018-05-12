@@ -135,9 +135,18 @@ def get_ranking(data):
     return ranking
 
 
-def print_ranking(data, ranking, num_elements=250):
+def print_ranking(data, ranking, num_elements=250, markdown_format=True):
+    steam_search_url = 'https://store.steampowered.com/search/?term='
+
     for (i, element) in enumerate(ranking[:num_elements]):
-        print('{:4}.\t'.format(1 + i) + data[element]['name'] + ' ({:1.3f})'.format(data[element]['bayesian_average']))
+        element_name = data[element]['name']
+
+        if markdown_format:
+            element_description = '[' + element_name + '](' + steam_search_url + element_name + ')'
+        else:
+            element_description = element_name
+
+        print('{:4}.\t'.format(1 + i) + element_description + ' ({:1.3f})'.format(data[element]['bayesian_average']))
 
     return
 
