@@ -52,8 +52,10 @@ class TestComputeBayesianAverageMethods(unittest.TestCase):
             '@unepic_fran': {'name': '@unepic_fran', 'bayesian_average': 0.882},
         }
         ranking = compute_bayesian_average.get_ranking(data)
-        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, num_elements=3, markdown_format=False))
-        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, num_elements=3, markdown_format=True))
+        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, keyword=None, num_elements=3,
+                                                               markdown_format=False))
+        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, keyword=None, num_elements=3,
+                                                               markdown_format=True))
 
     def test_main(self):
         self.assertTrue(compute_bayesian_average.main(verbose=True))

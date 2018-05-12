@@ -135,18 +135,29 @@ def get_ranking(data):
     return ranking
 
 
-def print_ranking(data, ranking, num_elements=250, markdown_format=True):
-    steam_search_url = 'https://store.steampowered.com/search/?term='
+def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format=True):
+    steam_store_url = 'https://store.steampowered.com/app/'
+
+    if keyword == 'developers':
+        steam_search_url = 'https://store.steampowered.com/search/?developer='
+    elif keyword == 'publishers':
+        steam_search_url = 'https://store.steampowered.com/search/?publisher='
+    else:
+        steam_search_url = 'https://store.steampowered.com/search/?term='
 
     for (i, element) in enumerate(ranking[:num_elements]):
         element_name = data[element]['name']
 
         if markdown_format:
-            element_description = '[' + element_name + '](' + steam_search_url + element_name.replace(' ', '%20') + ')'
+            if keyword == 'games':
+                app_id = data[element]['appid']
+                hyperlink = '[' + element_name + '](' + steam_store_url + str(app_id) + ')'
+            else:
+                hyperlink = '[' + element_name + '](' + steam_search_url + element_name.replace(' ', '%20') + ')'
         else:
-            element_description = element_name
+            hyperlink = element_name
 
-        print('{:4}.\t'.format(1 + i) + element_description + ' ({:1.3f})'.format(data[element]['bayesian_average']))
+        print('{:4}.\t'.format(1 + i) + hyperlink + ' ({:1.3f})'.format(data[element]['bayesian_average']))
 
     return True
 
@@ -183,7 +194,7 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
 
     ranking = get_ranking(enhanced_data)
 
-    print_ranking(enhanced_data, ranking)
+    print_ranking(enhanced_data, ranking, keyword)
 
     return enhanced_data, prior, ranking
 
