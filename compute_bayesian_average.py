@@ -148,7 +148,7 @@ def print_prior(prior):
     return
 
 
-def run_bayesian_average_workflow(data, keyword=None, verbose=False):
+def run_bayesian_average_workflow(data, keyword=None, verbose=False, criterion='the most acclaimed'):
     # Bayesian Average for games
     enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data, keyword=None)
 
@@ -162,10 +162,15 @@ def run_bayesian_average_workflow(data, keyword=None, verbose=False):
 
         grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
 
-        # Bayesian Average for developers or publishers
-        enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data)
+        # Bayesian Average for developers (or publishers)
+        if criterion == 'the most reliable':
+            # Bayesian Averages of games are aggregated for each developer (or publisher).
+            enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data, keyword=keyword)
+        else:
+            # Positive and negative reviews of games are aggregated for each developer (or publisher).
+            enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data)
 
-    print('\nRanking of ' + keyword)
+    print('\nRanking of ' + criterion + ' ' + keyword)
     print_prior(prior)
 
     ranking = get_ranking(enhanced_data)
@@ -182,8 +187,9 @@ def main(verbose=False):
 
     enhanced_data, game_prior, game_ranking = run_bayesian_average_workflow(filtered_data)
 
-    for keyword in ['developers', 'publishers']:
-        run_bayesian_average_workflow(enhanced_data, keyword, verbose)
+    for criterion in ['the most acclaimed', 'the most reliable']:
+        for keyword in ['developers', 'publishers']:
+            run_bayesian_average_workflow(enhanced_data, keyword, verbose, criterion)
 
     return True
 
