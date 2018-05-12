@@ -102,6 +102,8 @@ def simplify_string(text):
 
 
 def check_string(data, keyword='developers'):
+    # Objective: check what remains after calls to simplify_string(), so that one could try to improve simplify_string()
+
     for app_id in data:
         text = data[app_id][keyword]
 
