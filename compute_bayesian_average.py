@@ -61,7 +61,7 @@ def group_data_by_keyword(data, keyword='developers'):
             try:
                 grouped_data[keyword_value].append(app_id)
             except KeyError:
-                grouped_data[keyword_value] = []
+                grouped_data[keyword_value] = [app_id]
 
     return grouped_data
 
