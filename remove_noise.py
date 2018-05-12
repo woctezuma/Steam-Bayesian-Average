@@ -62,7 +62,7 @@ def simplify_string(text):
 
 def main():
     # noinspection SpellCheckingInspection
-    input_text = 'Konami Digital Entertainment Co., Ltd'
+    input_text = 'Konami Digital Entertainment  Co., Ltd'
 
     simplified_text = simplify_string(input_text)
 
