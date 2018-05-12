@@ -45,6 +45,11 @@ def compute_bayesian_average_for_every_game(data):
     return data, prior
 
 
+def get_separator():
+    separator = ', '
+    return separator
+
+
 def group_data_by_keyword(data, keyword='developers'):
     grouped_data = dict()
 
@@ -52,7 +57,7 @@ def group_data_by_keyword(data, keyword='developers'):
 
         text = simplify_string(data[app_id][keyword])
 
-        for keyword_value in [value.strip() for value in text.split(', ')]:
+        for keyword_value in [value.strip() for value in text.split(get_separator())]:
             try:
                 grouped_data[keyword_value].append(app_id)
             except KeyError:
@@ -97,14 +102,12 @@ def simplify_string(text):
 
 
 def check_string(data, keyword='developers'):
-    separator = ', '
-
     for app_id in data:
         text = data[app_id][keyword]
 
         text = simplify_string(text)
 
-        if separator in text:
+        if get_separator() in text:
             print('appID={:7}'.format(app_id) + '\t' + text)
 
     return
