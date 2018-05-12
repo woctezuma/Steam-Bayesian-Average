@@ -135,7 +135,7 @@ def get_ranking(data):
     return ranking
 
 
-def print_ranking(data, ranking, num_elements=10):
+def print_ranking(data, ranking, num_elements=250):
     for (i, element) in enumerate(ranking[:num_elements]):
         print('{:4}.\t'.format(1 + i) + data[element]['name'] + ' ({:1.3f})'.format(data[element]['bayesian_average']))
 
