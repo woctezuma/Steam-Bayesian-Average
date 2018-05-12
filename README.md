@@ -30,6 +30,13 @@ pip install -r requirements.txt
 python compute_bayesian_average.py
 ```
 
+## Results
+
+Results are shown as Github Gists for:
+ - [the most acclaimed games](https://gist.github.com/woctezuma/52286a88ebfbe36709770020ec3a32f9),
+ - [the most acclaimed](https://gist.github.com/woctezuma/83267034f823e5a8debd48a2c2251cb5) and [the most reliable](https://gist.github.com/woctezuma/0c7c11b09281c6f30de152011d080b83) developers,
+ - [the most acclaimed](https://gist.github.com/woctezuma/adfeb0d0b624ccd28ffbc9ea5c3440d1) and [the most reliable](https://gist.github.com/woctezuma/714cb341c60ea5e74174fc5af472f100) publishers.
+
 ## Data
 
 The current algorithm relies solely on SteamSpy data. In case SteamSpy API stops providing the numbers of positive and
