@@ -150,7 +150,7 @@ def print_prior(prior):
 
 def run_bayesian_average_workflow(data, keyword=None, verbose=False):
     # Bayesian Average for games
-    enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data)
+    enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data, keyword=None)
 
     if keyword is None:
         keyword = 'games'
