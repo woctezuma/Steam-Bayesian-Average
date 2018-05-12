@@ -58,7 +58,7 @@ def group_data_by_keyword(data, keyword='developers'):
 
         text = simplify_string(data[app_id][keyword])
 
-        for keyword_value in [value.strip() for value in text.split(get_separator())]:
+        for keyword_value in set(value.strip() for value in text.split(get_separator())):
             try:
                 grouped_data[keyword_value].append(app_id)
             except KeyError:
