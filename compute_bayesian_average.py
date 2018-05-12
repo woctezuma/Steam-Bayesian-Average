@@ -142,7 +142,7 @@ def print_ranking(data, ranking, num_elements=250, markdown_format=True):
         element_name = data[element]['name']
 
         if markdown_format:
-            element_description = '[' + element_name + '](' + steam_search_url + element_name + ')'
+            element_description = '[' + element_name + '](' + steam_search_url + element_name.replace(' ', '%20') + ')'
         else:
             element_description = element_name
 
