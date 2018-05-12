@@ -52,6 +52,8 @@ def get_separator():
 
 
 def group_data_by_keyword(data, keyword='developers'):
+    # Objective: create a dictionary which maps developers (or publishers) to a list of appIDs
+
     grouped_data = dict()
 
     for app_id in data:
