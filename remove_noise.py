@@ -4,7 +4,8 @@ def simplify_comma_separated_string(text):
     # One attempt to deal with this issue is simplify_string(), but it is not satisfactory.
     # This leads to wrong hyperlinks when displaying the ranking:
     # - correct link: https://store.steampowered.com/search/?developer=CAPCOM%20CO.%2C%20LTD.
-    # - wrong link: https://store.steampowered.com/search/?publisher=CAPCOM%20Co.
+    # - wrong link: https://store.steampowered.com/search/?developer=CAPCOM%20Co.
+    # - trade-off: https://store.steampowered.com/search/?term=CAPCOM%20Co.
 
     # TODO deal with developers and publishers whose names contain a comma,
     # e.g. 'CAPCOM CO., LTD.' should not become 'CAPCOM CO.'
