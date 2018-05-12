@@ -67,7 +67,7 @@ def group_data_by_keyword(data, keyword='developers'):
 
 
 def simplify_string(text):
-    # Strings with commas
+    # Strings with commas which are not used as separators
     text = text.replace(', LLC', ' LLC')
     text = text.replace('o.,', 'o.')
     text = text.replace('O.,', 'O.')
@@ -76,7 +76,7 @@ def simplify_string(text):
     text = text.replace(', s.r.o.', ' s.r.o.')
     text = text.replace('Oh, ', 'Oh ')
 
-    # Strings with unnecessary information
+    # Strings with unnecessary information, which would lead to the same dev appearing under different names
     text = text.replace('&amp;', '')
     text = text.replace('& amp;', '')
     text = text.replace('&', '')
