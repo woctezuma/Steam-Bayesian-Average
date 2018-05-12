@@ -3,6 +3,7 @@ import unittest
 
 import compute_bayesian_average
 import load_data
+import remove_noise
 
 
 class TestLoadDataMethods(unittest.TestCase):
@@ -35,10 +36,16 @@ class TestLoadDataMethods(unittest.TestCase):
         self.assertTrue(load_data.main())
 
 
+class TestRemoveNoiseMethods(unittest.TestCase):
+
+    def test_main(self):
+        self.assertTrue(remove_noise.main())
+
+
 class TestComputeBayesianAverageMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(compute_bayesian_average.main())
+        self.assertTrue(compute_bayesian_average.main(verbose=True))
 
 
 if __name__ == '__main__':
