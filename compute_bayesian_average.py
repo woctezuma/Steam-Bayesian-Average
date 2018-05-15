@@ -183,6 +183,21 @@ def print_prior(prior):
     return
 
 
+def merge_game_scores_and_weights(grouped_data):
+    for keyword_value in grouped_data:
+        sum_game_weights = compute_game_num_votes(grouped_data[keyword_value])
+
+        normalized_game_scores = []
+        for (game_score, game_weight) in zip(grouped_data[keyword_value]['scores'],
+                                             grouped_data[keyword_value]['weights']):
+            normalized_weight = game_weight / sum_game_weights
+            normalized_game_scores.append(game_score * normalized_weight)
+
+        grouped_data[keyword_value]['scores'] = normalized_game_scores
+
+    return grouped_data
+
+
 def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliable'):
     # Bayesian Average for games
     enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data, keyword=None)
@@ -197,7 +212,12 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
         grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
 
         # Bayesian Average for developers (or publishers)
-        if criterion == 'the most reliable':
+        if criterion.startswith('the most reliable'):
+            if criterion.endswith('(with weights)'):
+                # Bayesian Averages of games are weighted for each developer (or publisher).
+                # Caveat: this is experimental! Weights are a hack to avoid disrupting devs with each new game release.
+                grouped_data = merge_game_scores_and_weights(grouped_data)
+
             # Bayesian Averages of games are aggregated for each developer (or publisher).
             enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data, keyword=keyword)
         else:
@@ -225,7 +245,7 @@ def main(verbose=False):
         for keyword in ['developers', 'publishers']:
             check_string(enhanced_data, keyword)
 
-    for criterion in ['the most acclaimed', 'the most reliable']:
+    for criterion in ['the most acclaimed', 'the most reliable', 'the most reliable (with weights)']:
         for keyword in ['developers', 'publishers']:
             run_bayesian_average_workflow(enhanced_data, keyword, criterion)
 
