@@ -62,6 +62,10 @@ def load_steamspy_data():
 
 
 def load_filtered_data(verbose=False):
+    # Objectives:
+    # - skip games with no review,
+    # - use more meaningful keywords for keys of data dictionary.
+
     steamspy_data = load_steamspy_data()
 
     data = dict()
