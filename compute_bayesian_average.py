@@ -187,13 +187,13 @@ def merge_game_scores_and_weights(grouped_data):
     for keyword_value in grouped_data:
         sum_game_weights = compute_game_num_votes(grouped_data[keyword_value])
 
-        normalized_game_scores = []
+        weighted_game_scores = []
         for (game_score, game_weight) in zip(grouped_data[keyword_value]['scores'],
                                              grouped_data[keyword_value]['weights']):
             normalized_weight = game_weight / sum_game_weights
-            normalized_game_scores.append(game_score * normalized_weight)
+            weighted_game_scores.append(game_score * normalized_weight)
 
-        grouped_data[keyword_value]['scores'] = normalized_game_scores
+        grouped_data[keyword_value]['scores'] = weighted_game_scores
 
     return grouped_data
 
