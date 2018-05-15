@@ -63,6 +63,7 @@ def load_steamspy_data():
 
 def load_filtered_data(verbose=False):
     # Objectives:
+    # - store app_ids as integers instead of strings.
     # - skip games with no review,
     # - use more meaningful keywords for keys of data dictionary.
 
