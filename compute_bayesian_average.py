@@ -112,6 +112,13 @@ def group_data_by_keyword(data, keyword='developers'):
             except KeyError:
                 grouped_data[keyword_value]['scores'] = [game_score]
 
+            game_weight = compute_game_num_votes(data[app_id])
+
+            try:
+                grouped_data[keyword_value]['weights'].append(game_weight)
+            except KeyError:
+                grouped_data[keyword_value]['weights'] = [game_weight]
+
     return grouped_data
 
 
