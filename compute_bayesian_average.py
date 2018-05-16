@@ -226,7 +226,7 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
             # Positive and negative reviews of games are aggregated for each developer (or publisher).
             enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data)
 
-    print('\nRanking of ' + criterion + ' ' + keyword)
+    print('\n# Ranking of ' + criterion + ' ' + keyword + '\n')
     print_prior(prior)
 
     ranking = get_ranking(enhanced_data)
