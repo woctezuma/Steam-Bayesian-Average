@@ -89,6 +89,15 @@ def match_data_by_keyword(data, keyword='developers'):
     return matched_data
 
 
+def normalize_game_weights(game_weights):
+    # Objective: scale the weights so that the sum of weights is equal to the number of games
+    num_games = len(game_weights)
+
+    game_weights = np.multiply(game_weights, num_games / np.sum(game_weights))
+
+    return game_weights
+
+
 def group_data_by_keyword(data, keyword='developers'):
     # Objective: aggregate game reviews for each developer (or publisher)
 
@@ -102,6 +111,7 @@ def group_data_by_keyword(data, keyword='developers'):
         grouped_data[keyword_value]['positive'] = 0
         grouped_data[keyword_value]['negative'] = 0
 
+        game_weights = []
         for app_id in matched_data[keyword_value]:
             grouped_data[keyword_value]['positive'] += data[app_id]['positive']
             grouped_data[keyword_value]['negative'] += data[app_id]['negative']
@@ -112,12 +122,10 @@ def group_data_by_keyword(data, keyword='developers'):
             except KeyError:
                 grouped_data[keyword_value]['scores'] = [game_score]
 
-            game_weight = compute_game_num_votes(data[app_id])
+            game_weights.append(compute_game_num_votes(data[app_id]))
 
-            try:
-                grouped_data[keyword_value]['weights'].append(game_weight)
-            except KeyError:
-                grouped_data[keyword_value]['weights'] = [game_weight]
+        # Once the iteration over app_ids is over, scale the weights:
+        grouped_data[keyword_value]['weights'] = normalize_game_weights(game_weights)
 
     return grouped_data
 
@@ -185,17 +193,8 @@ def print_prior(prior):
 
 def merge_game_scores_and_weights(grouped_data):
     for keyword_value in grouped_data:
-        sum_game_weights = compute_game_num_votes(grouped_data[keyword_value])
-
-        weighted_game_scores = []
-        for (game_score, game_weight) in zip(grouped_data[keyword_value]['scores'],
-                                             grouped_data[keyword_value]['weights']):
-            normalized_weight = game_weight / sum_game_weights
-            exponential_weight = np.exp(- 0.5 * normalized_weight ** 2)
-            weighted_game_score = game_score * exponential_weight
-            weighted_game_scores.append(weighted_game_score)
-
-        grouped_data[keyword_value]['scores'] = weighted_game_scores
+        grouped_data[keyword_value]['scores'] = np.multiply(grouped_data[keyword_value]['scores'],
+                                                            grouped_data[keyword_value]['weights'])
 
     return grouped_data
 
