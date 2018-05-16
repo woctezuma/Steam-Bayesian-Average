@@ -192,6 +192,8 @@ def print_prior(prior):
 
 
 def merge_game_scores_and_weights(grouped_data):
+    # Caveat: this is experimental! Weights are a hack to avoid disrupting devs with each new game release.
+
     for keyword_value in grouped_data:
         grouped_data[keyword_value]['scores'] = np.multiply(grouped_data[keyword_value]['scores'],
                                                             grouped_data[keyword_value]['weights'])
@@ -212,13 +214,12 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
 
         grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
 
-        # Bayesian Average for developers (or publishers)
-        if criterion.startswith('the most reliable'):
-            if criterion.endswith('(with weights)'):
-                # Bayesian Averages of games are weighted for each developer (or publisher).
-                # Caveat: this is experimental! Weights are a hack to avoid disrupting devs with each new game release.
-                grouped_data = merge_game_scores_and_weights(grouped_data)
+        if criterion.endswith('established'):
+            # Bayesian Averages of games are weighted for each developer (or publisher).
+            grouped_data = merge_game_scores_and_weights(grouped_data)
 
+        # Bayesian Average for developers (or publishers)
+        if criterion.endswith('reliable') or criterion.endswith('established'):
             # Bayesian Averages of games are aggregated for each developer (or publisher).
             enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data, keyword=keyword)
         else:
@@ -246,7 +247,7 @@ def main(verbose=False):
         for keyword in ['developers', 'publishers']:
             check_string(enhanced_data, keyword)
 
-    for criterion in ['the most acclaimed', 'the most reliable', 'the most reliable (with weights)']:
+    for criterion in ['the most acclaimed', 'the most reliable', 'the most established']:
         for keyword in ['developers', 'publishers']:
             run_bayesian_average_workflow(enhanced_data, keyword, criterion)
 
