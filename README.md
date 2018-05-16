@@ -18,7 +18,7 @@ This repository contains Python code to compute the Bayesian average of Steam ga
 
 - Install the required packages:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 - Call the Python script. SteamSpy data will be automatically downloaded through [an API](https://steamspy.com/api.php).
 
-```
+```bash
 python compute_bayesian_average.py
 ```
 
@@ -40,12 +40,16 @@ The higher the ratio of positive reviews, and the more reviews, the more likely 
 
 The higher the game scores, and the more released games, the more likely a developer or a publisher is *reliable*.
 
+### Established
+
+The most acclaimed its most reviewed games, and the more reliable, the more likely a developer or a publisher is *established*.
+
 ## Results
 
 Results are shown in the Wiki for:
  - [the most acclaimed games](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Games),
- - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Developers) and [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Developers) developers,
- - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Publishers) and [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Publishers) publishers.
+ - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Developers), [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Developers), and [the most established](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Established-Developers) developers,
+ - [the most acclaimed](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Acclaimed-Publishers), [the most reliable](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Reliable-Publishers), and [the most established](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/Established-Publishers) publishers.
 
 ## References
 
