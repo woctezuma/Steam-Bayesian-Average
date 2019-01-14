@@ -1,4 +1,6 @@
-# Steam Bayesian Average [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp] [![Code coverage][Codecov image]][Codecov]  [![Code Quality][codacy image]][codacy]
+# Steam Bayesian Average
+
+ [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp] [![Code coverage][Codecov image]][Codecov]  [![Code Quality][codacy image]][codacy]
 
   [Build]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average
   [Build image]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average.svg?branch=master
