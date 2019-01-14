@@ -241,7 +241,7 @@ def main(verbose=False):
 
     print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
 
-    enhanced_data, game_prior, game_ranking = run_bayesian_average_workflow(filtered_data)
+    enhanced_data, _, game_ranking = run_bayesian_average_workflow(filtered_data)
 
     if verbose:
         for keyword in ['developers', 'publishers']:
