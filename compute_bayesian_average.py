@@ -241,12 +241,15 @@ def main(verbose=False):
 
     print('[SteamSpy ; filtered] number of games = ' + str(len(filtered_data)))
 
+    # Game data including Bayesian average.
+    # NB: An unused variable is the ranking for the most acclaimed games.
     enhanced_data, _, _ = run_bayesian_average_workflow(filtered_data)
 
     if verbose:
         for keyword in ['developers', 'publishers']:
             check_string(enhanced_data, keyword)
 
+    # Rankings for developers and publishers
     for criterion in ['the most acclaimed', 'the most reliable', 'the most established']:
         for keyword in ['developers', 'publishers']:
             run_bayesian_average_workflow(enhanced_data, keyword, criterion)
