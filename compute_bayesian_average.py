@@ -104,7 +104,14 @@ def match_data_by_keyword(data, keyword='developers'):
 
 
 def normalize_game_weights(game_weights):
-    # Objective: scale the weights so that the sum of weights is equal to the number of games
+    # Objective: scale the weights so that the sum of weights is equal to the number of weights,
+    #            which is here equal to the number of games.
+    #
+    # NB 1: The value of the sum of SCALED weights MATCHES the value of the sum of weights in the UNWEIGHTED situation,
+    # i.e. in the case that all the terms of the sum have identical weight, equal to 1.
+    #
+    # NB 2: This scale value is important because these weights will appear in a weighted sum, not a weighted average.
+
     num_games = len(game_weights)
 
     game_weights = np.multiply(game_weights, num_games / np.sum(game_weights))
