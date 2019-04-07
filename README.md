@@ -39,6 +39,8 @@ python compute_bayesian_average.py
 
 ## Vocabulary
 
+Formulas are shown [on the Wiki](https://github.com/woctezuma/Steam-Bayesian-Average/wiki#vocabulary).
+
 ### Acclaimed
 
 The higher the ratio of positive reviews, and the more reviews, the more likely a game, a developer or a publisher is *acclaimed*.
