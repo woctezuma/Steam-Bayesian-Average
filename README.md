@@ -17,6 +17,8 @@
 
 This repository contains Python code to compute the Bayesian average of Steam games, developers, and publishers.
 
+![The most reliable publishers at Steam250](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/img/2019_04_07_banner_publishers.png)
+
 ## Requirements
 
 - Install the latest version of [Python 3.X](https://www.python.org/downloads/).
