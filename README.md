@@ -60,7 +60,8 @@ Results are shown in the Wiki for:
 
 ## References
 
-[Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
+* [Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
+* [the Steam250 website](https://steam250.com/contributors) which updates rankings every day.
 
 ## Appendix: data
 
