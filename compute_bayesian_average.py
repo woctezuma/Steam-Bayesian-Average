@@ -52,7 +52,7 @@ def choose_prior(data, keyword=None):
 
     prior = dict()
     prior['raw_score'] = np.sum(list_increment_values) / np.sum(list_num_votes)
-    prior['num_votes'] = np.median(list_num_votes)
+    prior['num_votes'] = np.mean(list_num_votes)
 
     return prior
 
