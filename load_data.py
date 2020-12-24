@@ -57,7 +57,7 @@ def load_steamdb_data(verbose=False):
 
 
 def load_steamspy_data():
-    data = steamspypi.api.load()
+    data = steamspypi.load()
     return data
 
 
