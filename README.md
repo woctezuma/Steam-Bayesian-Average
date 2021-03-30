@@ -2,8 +2,8 @@
 
  [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp] [![Code coverage][Codecov image]][Codecov]  [![Code Quality][codacy image]][codacy]
 
-  [Build]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average
-  [Build image]: https://travis-ci.org/woctezuma/Steam-Bayesian-Average.svg?branch=master
+  [Build]: <https://github.com/woctezuma/Steam-Bayesian-Average/actions>
+  [Build image]: <https://github.com/woctezuma/Steam-Bayesian-Average/workflows/Python application/badge.svg?branch=master>
 
   [PyUp]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/
   [Dependency image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/shield.svg
