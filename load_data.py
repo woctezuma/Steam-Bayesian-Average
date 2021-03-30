@@ -18,7 +18,7 @@ def get_steamdb_filename():
 
 
 def get_steamspy_filename():
-    data_filename = steamspypi.api.get_data_folder() + steamspypi.api.get_cached_database_filename()
+    data_filename = steamspypi.get_data_folder() + steamspypi.get_cached_database_filename()
 
     return data_filename
 
