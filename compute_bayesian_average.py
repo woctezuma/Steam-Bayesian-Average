@@ -1,3 +1,5 @@
+import json
+
 import numpy as np
 
 from load_data import load_filtered_data
@@ -265,6 +267,11 @@ def main(verbose=False):
     # Game data including Bayesian average.
     # NB: An unused variable is the ranking for the most acclaimed games.
     enhanced_data, _, _ = run_bayesian_average_workflow(filtered_data)
+
+    # Optionally, for uses in other projects, export the database including Bayesian averages:
+    temp_filename = 'data/game_data.json'
+    with open(temp_filename, 'w', encoding='utf8') as f:
+        json.dump(enhanced_data, f)
 
     if verbose:
         for keyword in ['developers', 'publishers']:
