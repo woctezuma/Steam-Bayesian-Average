@@ -3,6 +3,22 @@ import json
 from compute_bayesian_average import print_ranking
 
 
+def get_reddit_controversial_score(ups, downs):
+    # Reference: https://github.com/reddit-archive/reddit/blob/master/r2/r2/lib/db/_sorts.pyx
+
+    if downs <= 0 or ups <= 0:
+        score = 0
+    else:
+        magnitude = ups + downs
+        if ups > downs:
+            balance = downs / ups
+        else:
+            balance = ups / downs
+        score = magnitude ** balance
+
+    return score
+
+
 def get_bernoulli_variance(p):
     return p * (1 - p)
 
