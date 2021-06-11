@@ -43,9 +43,8 @@ def get_controversial_ranking(data, use_reddit_sort=True):
     return ranking
 
 
-def main(verbose=False):
+def main(use_reddit_sort=True, verbose=False):
     temp_filename = 'data/game_data.json'
-    use_reddit_sort = False
 
     keyword = 'games'
     criterion = 'the most controversial'
@@ -66,4 +65,4 @@ def main(verbose=False):
 
 
 if __name__ == '__main__':
-    main()
+    main(use_reddit_sort=False)
