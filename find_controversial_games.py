@@ -23,14 +23,21 @@ def get_bernoulli_variance(p):
     return p * (1 - p)
 
 
-def get_controversial_score(data_element):
-    controversial_score = get_bernoulli_variance(data_element['bayesian_average'])
+def get_controversial_score(data_element, use_reddit_sort=True):
+    if use_reddit_sort:
+        ups = data_element['positive']
+        downs = data_element['negative']
+        controversial_score = get_reddit_controversial_score(ups, downs)
+    else:
+        p = data_element['bayesian_average']
+        controversial_score = get_bernoulli_variance(p)
+
     return controversial_score
 
 
-def get_controversial_ranking(data):
+def get_controversial_ranking(data, use_reddit_sort=True):
     ranking = sorted(data.keys(),
-                     key=lambda element: get_controversial_score(data[element]),
+                     key=lambda element: get_controversial_score(data[element], use_reddit_sort),
                      reverse=True)
 
     return ranking
@@ -38,6 +45,7 @@ def get_controversial_ranking(data):
 
 def main(verbose=False):
     temp_filename = 'data/game_data.json'
+    use_reddit_sort = False
 
     keyword = 'games'
     criterion = 'the most controversial'
@@ -51,7 +59,7 @@ def main(verbose=False):
     # Print the ranking of controversial games
     print('\n# Ranking of ' + criterion + ' ' + keyword + '\n')
 
-    ranking = get_controversial_ranking(enhanced_data)
+    ranking = get_controversial_ranking(enhanced_data, use_reddit_sort)
     print_ranking(enhanced_data, ranking, keyword)
 
     return True
