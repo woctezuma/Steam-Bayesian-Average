@@ -7,9 +7,14 @@ def get_bernoulli_variance(p):
     return p * (1 - p)
 
 
+def get_controversial_score(data_element):
+    controversial_score = get_bernoulli_variance(data_element['bayesian_average'])
+    return controversial_score
+
+
 def get_controversial_ranking(data):
     ranking = sorted(data.keys(),
-                     key=lambda element: get_bernoulli_variance(data[element]['bayesian_average']),
+                     key=lambda element: get_controversial_score(data[element]),
                      reverse=True)
 
     return ranking
