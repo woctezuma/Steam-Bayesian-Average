@@ -56,7 +56,7 @@ def choose_prior(data, keyword=None):
         list_raw_scores = [compute_dev_raw_score(dev) for dev in data.values()]
         list_num_votes = [compute_dev_num_votes(dev) for dev in data.values()]
 
-    prior = dict()
+    prior = {}
     prior['raw_score'] = np.sum(list_increment_values) / np.sum(list_num_votes)
     prior['num_votes'] = np.mean(list_num_votes)
 
@@ -99,14 +99,12 @@ def get_separator():
 def match_data_by_keyword(data, keyword='developers'):
     # Objective: create a dictionary which maps developers (or publishers) to a list of appIDs
 
-    matched_data = dict()
+    matched_data = {}
 
     for app_id in data:
         text = simplify_comma_separated_string(data[app_id][keyword])
 
-        for keyword_value in set(
-            value.strip() for value in text.split(get_separator())
-        ):
+        for keyword_value in {value.strip() for value in text.split(get_separator())}:
             try:
                 matched_data[keyword_value].append(app_id)
             except KeyError:
@@ -136,10 +134,10 @@ def group_data_by_keyword(data, keyword='developers'):
 
     matched_data = match_data_by_keyword(data, keyword)
 
-    grouped_data = dict()
+    grouped_data = {}
 
     for keyword_value in matched_data:
-        grouped_data[keyword_value] = dict()
+        grouped_data[keyword_value] = {}
         grouped_data[keyword_value]['name'] = keyword_value
         grouped_data[keyword_value]['positive'] = 0
         grouped_data[keyword_value]['negative'] = 0
@@ -172,7 +170,7 @@ def check_string(data, keyword='developers'):
         text = simplify_comma_separated_string(text)
 
         if get_separator() in text:
-            print('appID={:7}'.format(app_id) + '\t' + text)
+            print(f'appID={app_id:7}' + '\t' + text)
 
     return
 
@@ -226,7 +224,7 @@ def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format
             hyperlink = element_name
 
         print(
-            '{:4}.\t'.format(1 + i)
+            f'{1 + i:4}.\t'
             + hyperlink
             + ' ({:1.3f})'.format(data[element]['bayesian_average']),
         )
