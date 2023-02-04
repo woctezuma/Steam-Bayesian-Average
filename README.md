@@ -2,19 +2,6 @@
 
  [![Build status][Build image]][Build] [![Updates][Dependency image]][PyUp] [![Python 3][Python3 image]][PyUp] [![Code coverage][Codecov image]][Codecov]  [![Code Quality][codacy image]][codacy]
 
-  [Build]: <https://github.com/woctezuma/Steam-Bayesian-Average/actions>
-  [Build image]: <https://github.com/woctezuma/Steam-Bayesian-Average/workflows/Python application/badge.svg?branch=master>
-
-  [PyUp]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/
-  [Dependency image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/shield.svg
-  [Python3 image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/python-3-shield.svg
-
-  [Codecov]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average
-  [Codecov image]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average/branch/master/graph/badge.svg
-
-  [codacy]: https://www.codacy.com/app/woctezuma/Steam-Bayesian-Average
-  [codacy image]: https://api.codacy.com/project/badge/Grade/82a9d45f5c2d443daf525e7a1a2ee65d 
-
 This repository contains Python code to compute the Bayesian average of Steam games, developers, and publishers.
 
 ![The most reliable publishers at Steam250](https://github.com/woctezuma/Steam-Bayesian-Average/wiki/img/2019_04_07_banner_publishers.png)
@@ -79,3 +66,19 @@ Once you are signed-in, make sure to view all games, then copy and paste the who
 ![SteamDB start](https://i.imgur.com/PzwJXA3.png)
 
 ![SteamDB end](https://i.imgur.com/Mf8k1nY.png)
+
+<!-- Definitions -->
+
+  [Build]: <https://github.com/woctezuma/Steam-Bayesian-Average/actions>
+  [Build image]: <https://github.com/woctezuma/Steam-Bayesian-Average/workflows/Python application/badge.svg?branch=master>
+
+  [PyUp]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/
+  [Dependency image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/shield.svg
+  [Python3 image]: https://pyup.io/repos/github/woctezuma/Steam-Bayesian-Average/python-3-shield.svg
+
+  [Codecov]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average
+  [Codecov image]: https://codecov.io/gh/woctezuma/Steam-Bayesian-Average/branch/master/graph/badge.svg
+
+  [codacy]: https://www.codacy.com/app/woctezuma/Steam-Bayesian-Average
+  [codacy image]: https://api.codacy.com/project/badge/Grade/82a9d45f5c2d443daf525e7a1a2ee65d 
+
