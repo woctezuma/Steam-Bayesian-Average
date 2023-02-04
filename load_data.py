@@ -18,7 +18,9 @@ def get_steamdb_filename():
 
 
 def get_steamspy_filename():
-    data_filename = steamspypi.get_data_folder() + steamspypi.get_cached_database_filename()
+    data_filename = (
+        steamspypi.get_data_folder() + steamspypi.get_cached_database_filename()
+    )
 
     return data_filename
 
@@ -73,7 +75,10 @@ def load_filtered_data(verbose=False):
     for app_id_str in steamspy_data:
         app_id = int(app_id_str)
 
-        num_reviews = steamspy_data[app_id_str]['positive'] + steamspy_data[app_id_str]['negative']
+        num_reviews = (
+            steamspy_data[app_id_str]['positive']
+            + steamspy_data[app_id_str]['negative']
+        )
 
         if num_reviews > 0:
             data[app_id] = dict()
@@ -88,8 +93,11 @@ def load_filtered_data(verbose=False):
             data[app_id]['negative'] = steamspy_data[app_id_str]['negative']
         else:
             if verbose:
-                print('No review could be found for appID={:7}'.format(app_id) + '\t'
-                      + steamspy_data[app_id_str]['name'])
+                print(
+                    'No review could be found for appID={:7}'.format(app_id)
+                    + '\t'
+                    + steamspy_data[app_id_str]['name'],
+                )
 
     return data
 
@@ -107,21 +115,38 @@ def compare_data(verbose=False):
 
     steamspy_unique_app_ids = steamspy_app_ids.difference(common_app_ids)
 
-    print('[SteamDB] number of games not on SteamSpy = ' + str(len(steamdb_unique_app_ids)))
+    print(
+        '[SteamDB] number of games not on SteamSpy = '
+        + str(len(steamdb_unique_app_ids)),
+    )
 
     if verbose:
         for app_id in steamdb_unique_app_ids:
-            print('SteamDB appID={:7}'.format(app_id) + '\t' + steamdb_data[app_id]['name'])
+            print(
+                'SteamDB appID={:7}'.format(app_id)
+                + '\t'
+                + steamdb_data[app_id]['name'],
+            )
         print()
 
-    print('[SteamSpy] number of games not on SteamDB = ' + str(len(steamspy_unique_app_ids)))
+    print(
+        '[SteamSpy] number of games not on SteamDB = '
+        + str(len(steamspy_unique_app_ids)),
+    )
 
     if verbose:
         for app_id in steamspy_unique_app_ids:
-            print('SteamSpy appID={:7}'.format(app_id) + '\t' + steamspy_data[str(app_id)]['name'])
+            print(
+                'SteamSpy appID={:7}'.format(app_id)
+                + '\t'
+                + steamspy_data[str(app_id)]['name'],
+            )
         print()
 
-    print('Number of games listed on both SteamDB and SteamSpy = ' + str(len(common_app_ids)))
+    print(
+        'Number of games listed on both SteamDB and SteamSpy = '
+        + str(len(common_app_ids)),
+    )
 
     num_name_mismatches = 0
 
@@ -137,7 +162,10 @@ def compare_data(verbose=False):
                 print('SteamDB appID={:7}'.format(app_id) + '\t' + steamdb_name)
                 print('SteamSpy appID={:7}'.format(app_id) + '\t' + steamspy_name)
 
-    print('Number of games listed on both SteamDB and SteamSpy, yet names mismatch = ' + str(num_name_mismatches))
+    print(
+        'Number of games listed on both SteamDB and SteamSpy, yet names mismatch = '
+        + str(num_name_mismatches),
+    )
 
     return True
 

@@ -44,11 +44,15 @@ def compute_dev_num_votes(dev):
 
 def choose_prior(data, keyword=None):
     if keyword is None:
-        list_increment_values = [compute_game_increment_value(game) for game in data.values()]
+        list_increment_values = [
+            compute_game_increment_value(game) for game in data.values()
+        ]
         list_raw_scores = [compute_game_raw_score(game) for game in data.values()]
         list_num_votes = [compute_game_num_votes(game) for game in data.values()]
     else:
-        list_increment_values = [compute_dev_increment_value(dev) for dev in data.values()]
+        list_increment_values = [
+            compute_dev_increment_value(dev) for dev in data.values()
+        ]
         list_raw_scores = [compute_dev_raw_score(dev) for dev in data.values()]
         list_num_votes = [compute_dev_num_votes(dev) for dev in data.values()]
 
@@ -67,8 +71,9 @@ def compute_bayesian_average_for_an_element(element, prior, keyword=None):
         raw_score = compute_dev_raw_score(element)
         num_votes = compute_dev_num_votes(element)
 
-    bayesian_average = (prior['num_votes'] * prior['raw_score'] + num_votes * raw_score) / (
-            prior['num_votes'] + num_votes)
+    bayesian_average = (
+        prior['num_votes'] * prior['raw_score'] + num_votes * raw_score
+    ) / (prior['num_votes'] + num_votes)
 
     return bayesian_average
 
@@ -77,7 +82,11 @@ def compute_bayesian_average_for_every_element(data, keyword=None):
     prior = choose_prior(data, keyword)
 
     for app_id in data:
-        data[app_id]['bayesian_average'] = compute_bayesian_average_for_an_element(data[app_id], prior, keyword)
+        data[app_id]['bayesian_average'] = compute_bayesian_average_for_an_element(
+            data[app_id],
+            prior,
+            keyword,
+        )
 
     return data, prior
 
@@ -93,10 +102,11 @@ def match_data_by_keyword(data, keyword='developers'):
     matched_data = dict()
 
     for app_id in data:
-
         text = simplify_comma_separated_string(data[app_id][keyword])
 
-        for keyword_value in set(value.strip() for value in text.split(get_separator())):
+        for keyword_value in set(
+            value.strip() for value in text.split(get_separator())
+        ):
             try:
                 matched_data[keyword_value].append(app_id)
             except KeyError:
@@ -168,7 +178,11 @@ def check_string(data, keyword='developers'):
 
 
 def get_ranking(data):
-    ranking = sorted(data.keys(), key=lambda element: data[element]['bayesian_average'], reverse=True)
+    ranking = sorted(
+        data.keys(),
+        key=lambda element: data[element]['bayesian_average'],
+        reverse=True,
+    )
 
     return ranking
 
@@ -189,27 +203,48 @@ def print_ranking(data, ranking, keyword=None, num_elements=250, markdown_format
     else:
         steam_search_url = 'https://store.steampowered.com/search/?term='
 
-    for (i, element) in enumerate(ranking[:num_elements]):
+    for i, element in enumerate(ranking[:num_elements]):
         element_name = data[element]['name']
 
         if markdown_format:
             if keyword == 'games':
                 # noinspection SpellCheckingInspection
                 app_id = data[element]['appid']
-                hyperlink = '[' + element_name + '](' + steam_store_url + str(app_id) + ')'
+                hyperlink = (
+                    '[' + element_name + '](' + steam_store_url + str(app_id) + ')'
+                )
             else:
-                hyperlink = '[' + element_name + '](' + steam_search_url + simplify_url_item(element_name) + ')'
+                hyperlink = (
+                    '['
+                    + element_name
+                    + ']('
+                    + steam_search_url
+                    + simplify_url_item(element_name)
+                    + ')'
+                )
         else:
             hyperlink = element_name
 
-        print('{:4}.\t'.format(1 + i) + hyperlink + ' ({:1.3f})'.format(data[element]['bayesian_average']))
+        print(
+            '{:4}.\t'.format(1 + i)
+            + hyperlink
+            + ' ({:1.3f})'.format(data[element]['bayesian_average']),
+        )
 
     return True
 
 
 def print_prior(prior):
-    hyperlink_to_github = ' ; [reference](https://github.com/woctezuma/Steam-Bayesian-Average)'
-    print('Prior: score={:1.3f} ; size={:3.0f}'.format(prior['raw_score'], prior['num_votes']) + hyperlink_to_github)
+    hyperlink_to_github = (
+        ' ; [reference](https://github.com/woctezuma/Steam-Bayesian-Average)'
+    )
+    print(
+        'Prior: score={:1.3f} ; size={:3.0f}'.format(
+            prior['raw_score'],
+            prior['num_votes'],
+        )
+        + hyperlink_to_github,
+    )
 
     return
 
@@ -218,15 +253,20 @@ def merge_game_scores_and_weights(grouped_data):
     # Caveat: this is experimental! Weights are a hack to avoid disrupting devs with each new game release.
 
     for keyword_value in grouped_data:
-        grouped_data[keyword_value]['scores'] = np.multiply(grouped_data[keyword_value]['scores'],
-                                                            grouped_data[keyword_value]['weights'])
+        grouped_data[keyword_value]['scores'] = np.multiply(
+            grouped_data[keyword_value]['scores'],
+            grouped_data[keyword_value]['weights'],
+        )
 
     return grouped_data
 
 
 def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliable'):
     # Bayesian Average for games
-    enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(data, keyword=None)
+    enhanced_game_data, game_prior = compute_bayesian_average_for_every_element(
+        data,
+        keyword=None,
+    )
 
     if keyword is None:
         keyword = 'games'
@@ -234,7 +274,6 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
         enhanced_data = enhanced_game_data
         prior = game_prior
     else:
-
         grouped_data = group_data_by_keyword(enhanced_game_data, keyword)
 
         if criterion.endswith('established'):
@@ -244,10 +283,15 @@ def run_bayesian_average_workflow(data, keyword=None, criterion='the most reliab
         # Bayesian Average for developers (or publishers)
         if criterion.endswith('reliable') or criterion.endswith('established'):
             # Bayesian Averages of games are aggregated for each developer (or publisher).
-            enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data, keyword=keyword)
+            enhanced_data, prior = compute_bayesian_average_for_every_element(
+                grouped_data,
+                keyword=keyword,
+            )
         else:
             # Positive and negative reviews of games are aggregated for each developer (or publisher).
-            enhanced_data, prior = compute_bayesian_average_for_every_element(grouped_data)
+            enhanced_data, prior = compute_bayesian_average_for_every_element(
+                grouped_data,
+            )
 
     print('\n# Ranking of ' + criterion + ' ' + keyword + '\n')
     print_prior(prior)
@@ -278,7 +322,11 @@ def main(verbose=False):
             check_string(enhanced_data, keyword)
 
     # Rankings for developers and publishers
-    for criterion in ['the most acclaimed', 'the most reliable', 'the most established']:
+    for criterion in [
+        'the most acclaimed',
+        'the most reliable',
+        'the most established',
+    ]:
         for keyword in ['developers', 'publishers']:
             run_bayesian_average_workflow(enhanced_data, keyword, criterion)
 

@@ -7,7 +7,6 @@ import remove_noise
 
 
 class TestLoadDataMethods(unittest.TestCase):
-
     def test_get_data_path(self):
         self.assertEqual(load_data.get_data_path(), 'data/')
 
@@ -15,7 +14,10 @@ class TestLoadDataMethods(unittest.TestCase):
         self.assertEqual(load_data.get_steamdb_filename(), 'data/steamdb.txt')
 
     def test_get_steamspy_filename(self):
-        self.assertEqual(load_data.get_steamspy_filename(), 'data/' + time.strftime('%Y%m%d') + '_steamspy.json')
+        self.assertEqual(
+            load_data.get_steamspy_filename(),
+            'data/' + time.strftime('%Y%m%d') + '_steamspy.json',
+        )
 
     def test_load_steamdb_data(self):
         self.assertGreater(len(load_data.load_steamdb_data(verbose=True)), 0)
@@ -37,13 +39,11 @@ class TestLoadDataMethods(unittest.TestCase):
 
 
 class TestRemoveNoiseMethods(unittest.TestCase):
-
     def test_main(self):
         self.assertTrue(remove_noise.main())
 
 
 class TestComputeBayesianAverageMethods(unittest.TestCase):
-
     def test_print_ranking(self):
         data = {
             'The Behemoth': {'name': 'The Behemoth', 'bayesian_average': 0.905},
@@ -52,10 +52,24 @@ class TestComputeBayesianAverageMethods(unittest.TestCase):
             '@unepic_fran': {'name': '@unepic_fran', 'bayesian_average': 0.882},
         }
         ranking = compute_bayesian_average.get_ranking(data)
-        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, keyword=None, num_elements=3,
-                                                               markdown_format=False))
-        self.assertTrue(compute_bayesian_average.print_ranking(data, ranking, keyword=None, num_elements=3,
-                                                               markdown_format=True))
+        self.assertTrue(
+            compute_bayesian_average.print_ranking(
+                data,
+                ranking,
+                keyword=None,
+                num_elements=3,
+                markdown_format=False,
+            ),
+        )
+        self.assertTrue(
+            compute_bayesian_average.print_ranking(
+                data,
+                ranking,
+                keyword=None,
+                num_elements=3,
+                markdown_format=True,
+            ),
+        )
 
     def test_main(self):
         self.assertTrue(compute_bayesian_average.main(verbose=True))
