@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import numpy as np
 
@@ -312,7 +313,7 @@ def main(verbose=False):
 
     # Optionally, for uses in other projects, export the database including Bayesian averages:
     temp_filename = 'data/game_data.json'
-    with open(temp_filename, 'w', encoding='utf8') as f:
+    with Path(temp_filename).open('w', encoding='utf8') as f:
         json.dump(enhanced_data, f)
 
     if verbose:

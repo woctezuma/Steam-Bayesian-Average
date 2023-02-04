@@ -1,4 +1,5 @@
 import pathlib
+from pathlib import Path
 
 import steamspypi.api
 
@@ -28,7 +29,7 @@ def get_steamspy_filename():
 def load_steamdb_data(verbose=False):
     steamdb_filename = get_steamdb_filename()
 
-    with open(steamdb_filename, encoding='utf8') as f:
+    with Path(steamdb_filename).open(encoding='utf8') as f:
         d = f.readlines()
 
     if verbose:
