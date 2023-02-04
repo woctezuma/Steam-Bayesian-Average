@@ -1,8 +1,6 @@
 # Steam Bayesian Average
 
  [![Build status][Build image]][Build]
- [![Updates][Dependency image]][PyUp]
- [![Python 3][Python3 image]][PyUp]
  [![Code coverage][Codecov image]][Codecov]
  [![Code Quality][codacy image]][codacy]
 
