@@ -171,7 +171,7 @@ def check_string(data, keyword='developers'):
         text = simplify_comma_separated_string(text)
 
         if get_separator() in text:
-            print(f'appID={app_id:7}' + '\t' + text)
+            print(f'appID={app_id:7}\t{text}')
 
     return
 

@@ -95,9 +95,7 @@ def load_filtered_data(verbose=False):
         else:
             if verbose:
                 print(
-                    f'No review could be found for appID={app_id:7}'
-                    + '\t'
-                    + steamspy_data[app_id_str]['name'],
+                    f'No review could be found for appID={app_id:7}\t{steamspy_data[app_id_str]["name"]}',
                 )
 
     return data
@@ -123,9 +121,7 @@ def compare_data(verbose=False):
 
     if verbose:
         for app_id in steamdb_unique_app_ids:
-            print(
-                f'SteamDB appID={app_id:7}' + '\t' + steamdb_data[app_id]['name'],
-            )
+            print(f'SteamDB appID={app_id:7}\t{steamdb_data[app_id]["name"]}')
         print()
 
     print(
@@ -135,11 +131,7 @@ def compare_data(verbose=False):
 
     if verbose:
         for app_id in steamspy_unique_app_ids:
-            print(
-                f'SteamSpy appID={app_id:7}'
-                + '\t'
-                + steamspy_data[str(app_id)]['name'],
-            )
+            print(f'SteamSpy appID={app_id:7}\t{steamspy_data[str(app_id)]["name"]}')
         print()
 
     print(
@@ -158,8 +150,8 @@ def compare_data(verbose=False):
         if steamdb_name != steamspy_name:
             num_name_mismatches += 1
             if verbose:
-                print(f'SteamDB appID={app_id:7}' + '\t' + steamdb_name)
-                print(f'SteamSpy appID={app_id:7}' + '\t' + steamspy_name)
+                print(f'SteamDB appID={app_id:7}\t{steamdb_name}')
+                print(f'SteamSpy appID={app_id:7}\t{steamspy_name}')
 
     print(
         'Number of games listed on both SteamDB and SteamSpy, yet names mismatch = '
