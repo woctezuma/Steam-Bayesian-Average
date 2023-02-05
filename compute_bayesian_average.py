@@ -48,13 +48,11 @@ def choose_prior(data, keyword=None):
         list_increment_values = [
             compute_game_increment_value(game) for game in data.values()
         ]
-        list_raw_scores = [compute_game_raw_score(game) for game in data.values()]
         list_num_votes = [compute_game_num_votes(game) for game in data.values()]
     else:
         list_increment_values = [
             compute_dev_increment_value(dev) for dev in data.values()
         ]
-        list_raw_scores = [compute_dev_raw_score(dev) for dev in data.values()]
         list_num_votes = [compute_dev_num_votes(dev) for dev in data.values()]
 
     prior = {}
