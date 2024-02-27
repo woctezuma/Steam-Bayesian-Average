@@ -58,7 +58,7 @@ Results are shown in the Wiki for:
 ## Appendix: custom formulas
 
 > [!TIP]
-> For "Best of Steam", you can [use the following custom ranking formulas](https://github.com/SteamDatabase/steamdb.info-issues/issues/793#issuecomment-1966065864) to get a ranking with the Bayesian Average.
+> For "Best of Steam", you can [use the following custom ranking formulas](https://github.com/SteamDatabase/steamdb.info-issues/issues/793#issuecomment-1966065864) to rely on the Bayesian Average.
 
 - Using **average values** obtained on September 3, 2023 for the **prior**:
 
