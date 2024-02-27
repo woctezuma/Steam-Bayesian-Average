@@ -53,6 +53,35 @@ Results are shown in the Wiki for:
 
 * [Wikipedia: Bayesian Average](https://en.wikipedia.org/wiki/Bayesian_average)
 * [the Steam250 website](https://steam250.com/contributors) which updates rankings every day.
+* [Torn's "Best of Steam" website](https://tornware.net/best-of-steam/) which updates rankings every day and allows custom ranking formulas.
+
+## Appendix: custom formulas
+
+For "Best of Steam", you can [use the following custom ranking formulas](https://github.com/SteamDatabase/steamdb.info-issues/issues/793#issuecomment-1966065864) to get a ranking with the Bayesian Average.
+
+- Using **average values** obtained on September 3, 2023 for the **prior**:
+
+```js
+const C = 1117 ;
+const totalReviews = game.votes ;
+
+const m = 0.756 ;
+const positiveReviews = game.positiveVotes ;
+
+return (C * m + positiveReviews) / (C + totalReviews);
+```
+
+- Using **median values** obtained on September 3, 2023 for the **prior**:
+
+```js
+const C = 17 ;
+const totalReviews = game.votes ;
+
+const m = 0.822 ;
+const positiveReviews = game.positiveVotes ;
+
+return (C * m + positiveReviews) / (C + totalReviews);
+```
 
 ## Appendix: data
 
