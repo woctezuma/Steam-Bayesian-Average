@@ -76,6 +76,15 @@ const m = 0.822 ;
 return (C * m + game.positiveVotes) / ( C + game.votes) ;
 ```
 
+- Replicating SteamDB's formula:
+
+```js
+const C = 1 ;
+const m = 0.50 ;
+const p = game.positiveVotes / game.votes ;
+return p + (m-p) * (C+game.votes)**Math.log10(m) ;
+```
+
 ## Appendix: data
 
 The current algorithm relies solely on SteamSpy data. In case SteamSpy API stops providing the numbers of positive and
