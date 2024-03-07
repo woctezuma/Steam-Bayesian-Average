@@ -64,24 +64,16 @@ Results are shown in the Wiki for:
 
 ```js
 const C = 1117 ;
-const totalReviews = game.votes ;
-
 const m = 0.756 ;
-const positiveReviews = game.positiveVotes ;
-
-return (C * m + positiveReviews) / (C + totalReviews);
+return (C * m + game.positiveVotes) / ( C + game.votes) ;
 ```
 
 - Using **median values** obtained on September 3, 2023 for the **prior**:
 
 ```js
 const C = 17 ;
-const totalReviews = game.votes ;
-
 const m = 0.822 ;
-const positiveReviews = game.positiveVotes ;
-
-return (C * m + positiveReviews) / (C + totalReviews);
+return (C * m + game.positiveVotes) / ( C + game.votes) ;
 ```
 
 ## Appendix: data
