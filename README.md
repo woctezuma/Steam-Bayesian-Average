@@ -82,7 +82,8 @@ return (C * m + game.positiveVotes) / ( C + game.votes) ;
 const C = 1 ;
 const m = 0.50 ;
 const p = game.positiveVotes / game.votes ;
-return p + (m-p) * (C+game.votes)**Math.log10(m) ;
+const alpha = (C+game.votes) ** Math.log10(m) ;
+return alpha*m + (1-alpha)*p ;
 ```
 
 ## Appendix: data
