@@ -65,7 +65,7 @@ Results are shown in the Wiki for:
 ```js
 const C = 1117 ;
 const m = 0.756 ;
-return (C * m + game.positiveVotes) / ( C + game.votes) ;
+return (C * m + game.positiveVotes) / (C + game.votes) ;
 ```
 
 - Using **median values** obtained on September 3, 2023 for the **prior**:
@@ -73,7 +73,7 @@ return (C * m + game.positiveVotes) / ( C + game.votes) ;
 ```js
 const C = 17 ;
 const m = 0.822 ;
-return (C * m + game.positiveVotes) / ( C + game.votes) ;
+return (C * m + game.positiveVotes) / (C + game.votes) ;
 ```
 
 - For comparison, **replicating** SteamDB's formula, which does not use Bayesian average::
@@ -82,7 +82,7 @@ return (C * m + game.positiveVotes) / ( C + game.votes) ;
 const C = 1 ;
 const m = 0.50 ;
 const p = game.positiveVotes / game.votes ;
-const alpha = (C+game.votes) ** Math.log10(m) ;
+const alpha = (C + game.votes) ** Math.log10(m) ;
 return alpha*m + (1-alpha)*p ;
 ```
 
