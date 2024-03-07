@@ -76,7 +76,7 @@ const m = 0.822 ;
 return (C * m + game.positiveVotes) / ( C + game.votes) ;
 ```
 
-- Replicating SteamDB's formula:
+- For comparison, **replicating** SteamDB's formula, which does not use Bayesian average::
 
 ```js
 const C = 1 ;
