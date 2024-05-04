@@ -63,19 +63,19 @@ Results are shown in the Wiki for:
 - Using **average values** obtained on September 3, 2023 for the **prior**:
 
 ```js
-const C = 1117 ;  // prior: avg #reviews
-const m = 0.756 ; // prior: avg score
+const C = 1117 ;  // prior: average #reviews
+const m = 0.756 ; // prior: average score
 const n = game.votes ;
-return (C*m+game.positiveVotes) / (C+n) ;
+return (C*m + game.positiveVotes) / (C+n) ;
 ```
 
 - Using **median values** obtained on September 3, 2023 for the **prior**:
 
 ```js
-const C = 17 ;    // prior: med #reviews
-const m = 0.822 ; // prior: med score
+const C = 17 ;    // prior: median #reviews
+const m = 0.822 ; // prior: median score
 const n = game.votes ;
-return (C*m+game.positiveVotes) / (C+n) ;
+return (C*m + game.positiveVotes) / (C+n) ;
 ```
 
 - For comparison, **replicating** SteamDB's formula, which does not use Bayesian average::
