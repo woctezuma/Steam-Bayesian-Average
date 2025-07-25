@@ -1,2 +1,2 @@
-numpy==2.1.0
+numpy==2.3.2
 steamspypi==1.1.1
