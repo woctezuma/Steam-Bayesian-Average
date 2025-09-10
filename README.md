@@ -85,7 +85,7 @@ const C = 1 ;    // offset for #reviews
 const m = 0.50 ; // middle point for score
 const n = game.votes ;
 const p = game.positiveVotes / n ;
-const t = (C+n) ** Math.log10(m) ;
+const t = (C+n) ** Math.log10(0.5) ;
 return t*m + (1-t)*p ;
 ```
 
